@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groupie-Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        .img {
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1><a href="/">Main page</a></h1>
+    </header>
+    <div class="d-flex justify-content-center flex-column align-items-center h-100">
+        {{$Group:=.}}
+        <img src="{{$Group.Image}}" alt="" class="img">
+        <div class="card-body">
+            <h3 class="card-title">{{$Group.Name}}</h3>
+
+            <p>Group members:</p>
+            <ul>
+                {{ range $member := $Group.Members }}
+                <li>{{ $member }}</li>
+                {{ end }}
+            </ul>
+
+            <p>Creation Date: {{$Group.CreationDate}}</p>
+            <p>First album: {{$Group.FirstAlbum}}</p>
+            <p><a href="/locations/{{.Id}}">Concert locations</a></p>
+            <p><a href="/dates/{{.Id}}">Concert dates</a></p>
+            <p><a href="/relation/{{.Id}}">Relation</a></p>
+        </div>
+    </div>
+</body>
+
+</html>
